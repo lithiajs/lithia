@@ -1,5 +1,5 @@
 {
-  "name": "@lithia/scanner",
+  "name": "@lithiajs/scanner",
   "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",

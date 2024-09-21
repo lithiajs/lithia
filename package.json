@@ -1,9 +1,19 @@
 {
   "name": "lithia",
+  "description": "The Next-Gen Node.js Framework for building fast, modern and scalable server-side applications with TypeScript.",
+  "author": {
+    "name": "Lucas Larangeira",
+    "email": "lukearch@proton.me"
+  },
+  "license": "MIT",
   "private": true,
   "workspaces": [
     "packages/*"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lithiajs/lithia.git"
+  },
   "devDependencies": {
     "@changesets/cli": "^2.27.8",
     "@eslint/js": "^9.11.0",
