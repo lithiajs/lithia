@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "target": "es2021",
-    "module": "commonjs",
+    "lib": ["esnext"],
+    "module": "esnext",
+    "moduleResolution": "node",
     "strict": true,
     "strictNullChecks": true,
     "skipLibCheck": true,
