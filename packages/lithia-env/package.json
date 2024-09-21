@@ -1,0 +1,27 @@
+{
+  "name": "@lithia/env",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "directory": "packages/lithia-env"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "format": "prettier --write src/**/*.ts",
+    "lint": "eslint . --fix src/**/*.ts",
+    "build": "rm -rf dist && ncc build src/index.ts -t -o dist --minify --no-cache --no-source-map-register && npm run generate-types",
+    "generate-types": "tsc --project tsconfig.dts.json"
+  }
+}

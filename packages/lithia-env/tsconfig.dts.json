@@ -1,0 +1,8 @@
+{
+  "extends": "../../tsconfig.dts.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist"
+  },
+  "exclude": ["src/**/*.spec.ts"]
+}
