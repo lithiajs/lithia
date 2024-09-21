@@ -4,5 +4,5 @@
     "rootDir": "./src",
     "outDir": "./dist"
   },
-  "exclude": ["src/**/*.spec.ts"]
+  "exclude": ["src/**/*.spec.ts", "node_modules", "dist"]
 }

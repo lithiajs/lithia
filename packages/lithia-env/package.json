@@ -23,5 +23,8 @@
     "lint": "eslint . --fix src/**/*.ts",
     "build": "rm -rf dist && ncc build src/index.ts -t -o dist --minify --no-cache --no-source-map-register && npm run generate-types",
     "generate-types": "tsc --project tsconfig.dts.json"
+  },
+  "dependencies": {
+    "@lithiajs/scanner": "^0.0.0"
   }
 }

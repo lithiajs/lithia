@@ -3,7 +3,7 @@ import path from 'path';
 import { LithiaDirectoryScannerOptions } from './types/lithia-directory-scanner-options';
 
 export class LithiaDirectoryScanner {
-  private queue: Promise<void>[] = [];
+  private queue: (Promise<void> | void)[] = [];
 
   constructor(private readonly options: LithiaDirectoryScannerOptions) {}
 

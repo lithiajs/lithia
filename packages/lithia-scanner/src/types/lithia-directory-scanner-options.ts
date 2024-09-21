@@ -3,5 +3,5 @@ export type LithiaDirectoryScannerOptions = {
   searchFor: RegExp[];
   ignore?: RegExp[];
   onlyScanRootDir?: boolean;
-  onFile(filePath: string): Promise<void>;
+  onFile(filePath: string): void | Promise<void>;
 };

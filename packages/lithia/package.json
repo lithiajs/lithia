@@ -5,6 +5,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
+  "bin": {
+    "lithia": "dist/cli/index.js"
+  },
   "files": [
     "dist"
   ],
@@ -21,10 +24,13 @@
   "scripts": {
     "format": "prettier --write src/**/*.ts",
     "lint": "eslint . --fix src/**/*.ts",
-    "build": "rm -rf dist && ncc build src/index.ts -t -o dist --minify --no-cache --no-source-map-register && npm run generate-types",
+    "compile-lithia": "ncc build src/index.ts -t -o dist --minify --no-cache --no-source-map-register",
+    "compile-cli": "ncc build src/cli/index.ts -t -o dist/cli --minify --no-cache --no-source-map-register",
+    "build": "rm -rf dist && npm run compile-lithia && npm run compile-cli && npm run generate-types",
     "generate-types": "tsc --project tsconfig.dts.json"
   },
   "dependencies": {
-    "@lithia/env": "^0.0.0"
+    "@lithiajs/env": "^0.0.0",
+    "@lithiajs/scanner": "^0.0.0"
   }
 }

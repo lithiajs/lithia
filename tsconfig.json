@@ -1,17 +1,19 @@
 {
   "compilerOptions": {
-    "resolveJsonModule": true,
-    "preserveSymlinks": true,
-    "target": "ES2021",
-    "lib": ["ESNext", "DOM"],
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "declaration": true,
+    "target": "es2021",
+    "module": "commonjs",
     "strict": true,
+    "strictNullChecks": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "removeComments": false,
+    "resolveJsonModule": true,
+    "useUnknownInCatchVariables": false,
+    "preserveSymlinks": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
+    "baseUrl": "."
   },
   "exclude": ["node_modules"]
 }
