@@ -8,7 +8,7 @@ export class LithiaConfigLoader {
 
   private constructor() {}
 
-  public static load(rootPath: string): LithiaConfig {
+  public static load(rootPath: string = process.cwd()): LithiaConfig {
     let config = defineConfig({});
 
     const scanner = new LithiaDirectoryScanner({
