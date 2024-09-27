@@ -2,20 +2,12 @@
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "dist/**"
-      ]
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
     },
     "format": {
-      "dependsOn": [
-        "^format"
-      ],
-      "outputs": [
-        "src/**"
-      ]
+      "dependsOn": ["^format"],
+      "outputs": ["src/**"]
     }
   }
 }

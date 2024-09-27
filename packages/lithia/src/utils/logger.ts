@@ -22,10 +22,12 @@ export class Logger {
   }
 
   get context() {
-    return this.options?.context ?? '';
+    return typeof this.options === 'string'
+      ? this.options
+      : this.options?.context;
   }
 
-  constructor(private readonly options?: LoggerOptions) {}
+  constructor(private readonly options?: string | LoggerOptions) {}
 
   private getTimestamp() {
     return moment().format('YYYY-MM-DD HH:mm:ss');

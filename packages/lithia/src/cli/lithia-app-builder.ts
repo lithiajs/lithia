@@ -20,8 +20,6 @@ export class LithiaAppBuilder {
       this.typeCheck();
       this.transpile();
     } catch {
-      this.logger.error('An error occurred while building Lithia app');
-
       if (options?.exitOnError) {
         process.exit(1);
       }
