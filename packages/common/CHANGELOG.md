@@ -1,5 +1,11 @@
 # @lithiajs/common
 
+## 0.0.6
+
+### Patch Changes
+
+- new version
+
 ## 0.0.5
 
 ### Patch Changes

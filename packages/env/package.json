@@ -1,6 +1,6 @@
 {
   "name": "@lithiajs/env",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "license": "MIT",
   "files": [
     "dist"
@@ -29,7 +29,7 @@
     "build": "tsup src/index.ts --clean --dts --minify --sourcemap --format cjs,esm --out-dir dist"
   },
   "dependencies": {
-    "@lithiajs/common": "^0.0.5"
+    "@lithiajs/common": "^0.0.6"
   },
   "tsup": {
     "external": [

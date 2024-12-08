@@ -1,5 +1,14 @@
 # lithia
 
+## 0.0.6
+
+### Patch Changes
+
+- new version
+- Updated dependencies
+  - @lithiajs/common@0.0.6
+  - @lithiajs/env@0.0.6
+
 ## 0.0.5
 
 ### Patch Changes
