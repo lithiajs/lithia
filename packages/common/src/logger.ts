@@ -1,5 +1,5 @@
-import { LoggerService } from '../interfaces';
-import { colors } from '../utils';
+import { LoggerService } from './interfaces';
+import { colors } from './utils';
 
 export class Logger implements LoggerService {
   private context?: string;
