@@ -9,15 +9,25 @@ import { LithiaConfig } from './types';
 import { resolve } from 'path';
 
 export class ConfigLoader {
-  private readonly logger = new Logger(ConfigLoader.name);
-  private readonly files: RegExp[] = [/\.lithia\.config\.ts$/];
-  private readonly defaultConfig: LithiaConfig = {
-    logger: {
-      levels: ['debug', 'error', 'log', 'verbose', 'warn'],
-      useTimestamp: false,
-      useColors: true,
-    },
-  };
+  private readonly logger: Logger;
+  private readonly files: RegExp[];
+  private readonly defaultConfig: LithiaConfig;
+
+  constructor() {
+    this.logger = new Logger(ConfigLoader.name);
+    this.files = [new RegExp('lithia.config.js')];
+    this.defaultConfig = {
+      app: {
+        host: '0.0.0.0',
+        port: 3000,
+      },
+      logger: {
+        levels: ['debug', 'error', 'log', 'verbose', 'warn'],
+        useTimestamp: false,
+        useColors: true,
+      },
+    };
+  }
 
   async execute(): Promise<LithiaConfig> {
     const configFiles: Dirent[] = [];
@@ -36,24 +46,39 @@ export class ConfigLoader {
 
     if (configFiles.length > 1) {
       this.logger.warn(
-        'More than one configuration file found. Using the first one.',
+        `More than one configuration file found. Using the first one: ${configFiles[0].name}`,
       );
     }
 
-    const configFile = configFiles[0];
-    const config = await import(resolve(process.cwd(), configFile.name)).then(
-      (module) => module.default,
-    );
+    const config = await import(
+      resolve(process.cwd(), configFiles[0].name)
+    ).then((module) => module.default);
 
     return this.mergeConfigs([this.defaultConfig, config]);
   }
 
-  private mergeConfigs(configs: LithiaConfig[]): LithiaConfig {
-    return configs.reduce((acc, config) => {
-      return {
-        ...acc,
-        ...config,
-      };
+  private mergeConfigs(configs: any[]): LithiaConfig {
+    if (!configs || configs.length === 0) {
+      return this.defaultConfig;
+    }
+
+    if (configs.length === 1) {
+      return configs[0];
+    }
+
+    return configs?.reduce((merged, current) => {
+      Object.keys(current).forEach((key) => {
+        if (
+          typeof current[key] === 'object' &&
+          !Array.isArray(current[key]) &&
+          current[key]
+        ) {
+          merged[key] = this.mergeConfigs([merged[key] || {}, current[key]]);
+        } else {
+          merged[key] = current[key];
+        }
+      });
+      return merged;
     }, {});
   }
 }
