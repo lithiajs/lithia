@@ -1,0 +1,31 @@
+{
+  "name": "@lithiajs/common",
+  "version": "0.0.1",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "directory": "packages/common"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint . --ext .ts",
+    "build": "tsup src/index.ts --minify --dts --format cjs,esm --out-dir dist"
+  }
+}
