@@ -26,7 +26,9 @@
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint .",
-    "build": "tsup src/index.ts --minify --dts --format cjs,esm --out-dir dist"
+    "clean": "rimraf dist",
+    "gen-types": "tsc --declaration --emitDeclarationOnly --declarationMap --sourceMap --outDir dist",
+    "build": "ncc build src/index.ts -t -o dist --minify --no-cache --source-map"
   },
   "dependencies": {
     "@lithiajs/common": "^0.0.4-canary.0",
