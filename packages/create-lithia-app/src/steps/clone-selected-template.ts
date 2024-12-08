@@ -1,10 +1,10 @@
-import { ProjectTemplate } from '../types';
+import { spinAndAwait } from '@lithiajs/common';
+import { exec } from 'child_process';
+import { rmSync } from 'fs';
+import { resolve } from 'path';
 import { Step } from '../interfaces';
 import { StepContext } from '../step-context';
-import { exec } from 'child_process';
-import { resolve } from 'path';
-import { rmSync } from 'fs';
-import { spinAndAwait } from '../utils';
+import { ProjectTemplate } from '../types';
 
 export class CloneSelectedTemplateStep implements Step {
   async execute(ctx: StepContext): Promise<void> {

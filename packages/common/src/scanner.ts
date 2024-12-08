@@ -1,5 +1,6 @@
-import { ScanOptions } from './types/scan-options';
 import { readdir } from 'fs/promises';
+import { resolve } from 'path';
+import { ScanOptions } from './types/scan-options';
 
 export abstract class Scanner {
   public static async execute(options: ScanOptions) {
@@ -17,6 +18,10 @@ export abstract class Scanner {
       );
     });
 
-    await Promise.all(matchedFiles.map(async (file) => options.onFile?.(file)));
+    await Promise.all(
+      matchedFiles.map(async (file) =>
+        options.onFile?.(resolve(file.parentPath, file.name)),
+      ),
+    );
   }
 }

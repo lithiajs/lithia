@@ -4,39 +4,38 @@ import {
   Scanner,
 } from '@lithiajs/common';
 
-import { Dirent } from 'fs';
-import { resolve } from 'path';
+import { basename } from 'path';
 import { convertObjectToEnvVariables } from './convert-object-to-env-variables';
 import { LithiaConfig } from './types';
 
-export class ConfigLoader {
-  private readonly logger: Logger;
-  private readonly files: RegExp[];
-  private readonly defaultConfig: LithiaConfig;
-
-  constructor() {
-    this.logger = new Logger(ConfigLoader.name);
-    this.files = [/^lithia\.config\.js$/];
-    this.defaultConfig = {
-      app: {
-        host: '0.0.0.0',
-        port: 3000,
+export abstract class ConfigLoader {
+  private static logger: Logger = new Logger('ConfigLoader');
+  private static files: RegExp[] = [/^lithia\.config\.js$/];
+  private static defaultConfig: LithiaConfig = {
+    app: {
+      host: '0.0.0.0',
+      port: 3000,
+    },
+    logger: {
+      levels: ['debug', 'error', 'log', 'verbose', 'warn'],
+      useTimestamp: false,
+      useColors: true,
+    },
+    cli: {
+      builder: {
+        type: 'tsup',
+        bundle: true,
       },
-      logger: {
-        levels: ['debug', 'error', 'log', 'verbose', 'warn'],
-        useTimestamp: false,
-        useColors: true,
-      },
-    };
-  }
+    },
+  };
 
-  async execute(): Promise<void> {
-    const configFiles: Dirent[] = [];
+  static async execute(): Promise<void> {
+    const configFiles: string[] = [];
 
     await Scanner.execute({
       directory: process.cwd(),
       searchFor: this.files,
-      onFile(file) {
+      onFile(file: string) {
         configFiles.push(file);
       },
     });
@@ -45,13 +44,15 @@ export class ConfigLoader {
       throw new NoConfigurationFileFoundError();
     }
 
+    const fileName = basename(configFiles[0]);
+
     if (configFiles.length > 1) {
       this.logger.warn(
-        `More than one configuration file found. Using the first one: ${configFiles[0].name}`,
+        `More than one configuration file found. Using the first one: ${fileName}`,
       );
     }
 
-    const config = await import(resolve(process.cwd(), configFiles[0].name));
+    const config = await import(configFiles[0]);
 
     const variables = convertObjectToEnvVariables(
       this.mergeConfigs([
@@ -70,9 +71,9 @@ export class ConfigLoader {
     });
   }
 
-  private mergeConfigs(configs: any[]): LithiaConfig {
+  private static mergeConfigs(configs: any[]): LithiaConfig {
     if (!configs || configs.length === 0) {
-      return this.defaultConfig;
+      return ConfigLoader.defaultConfig;
     }
 
     if (configs.length === 1) {

@@ -1,8 +1,8 @@
+import { spinAndAwait } from '@lithiajs/common';
+import { resolve } from 'path';
+import git from 'simple-git';
 import { Step } from '../interfaces';
 import { StepContext } from '../step-context';
-import git from 'simple-git';
-import { resolve } from 'path';
-import { spinAndAwait } from '../utils';
 
 export class InitializeGitRepositoryStep implements Step {
   async execute(ctx: StepContext): Promise<void> {

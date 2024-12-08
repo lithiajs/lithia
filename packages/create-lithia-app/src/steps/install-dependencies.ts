@@ -1,8 +1,8 @@
+import { spinAndAwait } from '@lithiajs/common';
+import { spawn } from 'child_process';
+import { resolve } from 'path';
 import { Step } from '../interfaces';
 import { StepContext } from '../step-context';
-import { resolve } from 'path';
-import { spawn } from 'child_process';
-import { spinAndAwait } from '../utils';
 
 export class InstallDependenciesStep implements Step {
   async execute(ctx: StepContext): Promise<void> {

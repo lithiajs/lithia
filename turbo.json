@@ -1,28 +1,9 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
-    "clean": {},
-    "gen-types": {
-      "dependsOn": [
-        "^gen-types"
-      ],
-      "outputs": [
-        "dist/**/*.d.ts",
-        "dist/**/*.d.ts.map"
-      ],
-      "cache": false
-    },
-    "build-cli": {
-      "outputs": [
-        "dist/cli/**/*.js"
-      ],
-      "cache": false
-    },
     "build": {
       "dependsOn": [
-        "format",
-        "build-cli",
-        "gen-types"
+        "^build"
       ],
       "outputs": [
         "dist/**/*.js",

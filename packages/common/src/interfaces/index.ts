@@ -1,1 +1,1 @@
-export * from './logger-service';
+export type * from './logger-service';

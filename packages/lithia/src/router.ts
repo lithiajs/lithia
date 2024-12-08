@@ -1,10 +1,10 @@
 import { Logger, NotFoundException, Scanner } from '@lithiajs/common';
 
+import { resolve } from 'path';
 import { HttpMethod } from './enums';
 import { Route } from './types/route';
 import { RouteHandler } from './types/route-handler';
 import { RouteModule } from './types/route-module';
-import { resolve } from 'path';
 
 export class LithiaRouter {
   private readonly routesFolder: string;
@@ -13,7 +13,7 @@ export class LithiaRouter {
 
   constructor() {
     this.routesFolder = process.env.LITHIA_ROUTES_FOLDER || 'routes';
-    this.logger = new Logger(LithiaRouter.name);
+    this.logger = new Logger('LithiaRouter');
     this.routes = [];
   }
 
@@ -80,8 +80,8 @@ export class LithiaRouter {
       recursive: true,
       searchFor: [/\.js$/],
       onFile(file) {
-        delete require.cache[require.resolve(file.parentPath)];
-        routeFiles.push(file.parentPath);
+        delete require.cache[file];
+        routeFiles.push(file);
       },
     });
 

@@ -9,7 +9,7 @@
     "./package.json": "./package.json",
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     }
   },
@@ -26,8 +26,6 @@
   "scripts": {
     "format": "prettier '{src,__{tests}__}/**/*.ts' --write",
     "lint": "eslint .",
-    "clean": "rimraf dist",
-    "gen-types": "tsc --declaration --emitDeclarationOnly --declarationMap --outDir dist",
-    "build": "tsup src/index.ts --minify --sourcemap --format cjs --out-dir dist"
+    "build": "tsup src/index.ts --clean --dts --minify --sourcemap --format cjs,esm --out-dir dist"
   }
 }

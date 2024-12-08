@@ -22,10 +22,14 @@
   "scripts": {
     "format": "prettier '{src,__{tests}__}/**/*.ts' --write",
     "lint": "eslint .",
-    "clean": "rimraf dist",
-    "build": "tsup src/index.ts --minify --sourcemap --format cjs --out-dir dist"
+    "build": "tsup src/index.ts --clean --minify --sourcemap --format cjs --out-dir dist"
   },
   "dependencies": {
     "@lithiajs/common": "^0.0.4"
+  },
+  "tsup": {
+    "external": [
+      "@lithiajs/common"
+    ]
   }
 }

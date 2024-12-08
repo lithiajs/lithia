@@ -1,1 +1,1 @@
-export * from './scan-options';
+export type * from './scan-options';

@@ -1,3 +1,5 @@
+import { LithiaConfigBuilder } from './lithia-config-builder';
+
 export type LithiaConfig = {
   app?: {
     host?: string;
@@ -7,5 +9,8 @@ export type LithiaConfig = {
     levels?: Array<'debug' | 'error' | 'log' | 'verbose' | 'warn'>;
     useColors?: boolean;
     useTimestamp?: boolean;
+  };
+  cli?: {
+    builder?: LithiaConfigBuilder;
   };
 };
