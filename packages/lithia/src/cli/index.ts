@@ -2,18 +2,28 @@
 
 import { description, name, version } from '../../package.json';
 
+import { ConfigLoader } from '@lithiajs/env';
 import { Command } from 'commander';
+import { buildCommand } from './commands/build';
 
 async function cli() {
-  const program = new Command(name)
-    .description(description)
-    .version(version)
-    .usage('<command> [options]');
+  try {
+    await new ConfigLoader().execute();
 
-  await program.parseAsync(process.argv);
+    console.log(process.env);
 
-  if (!process.argv.slice(2).length) {
-    program.outputHelp();
+    const program = new Command(name)
+      .description(description)
+      .version(version)
+      .usage('<command> [options]')
+      .addCommand(buildCommand);
+
+    await program.parseAsync(process.argv);
+
+    if (!process.argv.slice(2).length) program.outputHelp();
+  } catch (error) {
+    console.error(error.message);
+    process.exit(1);
   }
 }
 

@@ -1,7 +1,7 @@
 export class NoConfigurationFileFoundError extends Error {
   constructor() {
     super(
-      'No configuration file found. Please create a lithia.config.ts file in the root of your project.',
+      `No Lithia configuration file found. Please refer to https://docs.lithiajs.org/configuration for more information.`,
     );
   }
 }

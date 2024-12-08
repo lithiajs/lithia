@@ -20,10 +20,10 @@
     "access": "public"
   },
   "scripts": {
-    "format": "prettier --write .",
+    "format": "prettier '{src,__{tests}__}/**/*.ts' --write",
     "lint": "eslint .",
     "clean": "rimraf dist",
-    "build": "ncc build src/index.ts -t -o dist --minify --no-cache --source-map"
+    "build": "tsup src/index.ts --minify --sourcemap --format cjs --out-dir dist"
   },
   "dependencies": {
     "@lithiajs/common": "^0.0.4"

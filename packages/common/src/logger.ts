@@ -9,17 +9,15 @@ export class Logger implements LoggerService {
   }
 
   private get useTimestamp(): boolean {
-    return process.env.LOG_TIMESTAMP === 'true';
+    return process.env.LITHIA_LOGGER_USETIMESTAMP === 'true';
   }
 
   private get useColors(): boolean {
-    return (
-      process.env.NO_COLORS === 'false' || process.env.NO_COLORS === undefined
-    );
+    return process.env.LITHIA_LOGGER_USECOLORS === 'true';
   }
 
   private get levels(): string[] {
-    const levels = process.env.LOG_LEVELS || 'debug,error,log,verbose,warn';
+    const levels = process.env.LITHIA_LOGGER_LEVELS || '';
     return levels.split(',')?.map((level) => level.trim());
   }
 

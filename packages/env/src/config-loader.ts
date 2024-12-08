@@ -5,9 +5,9 @@ import {
 } from '@lithiajs/common';
 
 import { Dirent } from 'fs';
-import { LithiaConfig } from './types';
-import { convertObjectToEnvVariables } from './convert-object-to-env-variables';
 import { resolve } from 'path';
+import { convertObjectToEnvVariables } from './convert-object-to-env-variables';
+import { LithiaConfig } from './types';
 
 export class ConfigLoader {
   private readonly logger: Logger;
@@ -16,7 +16,7 @@ export class ConfigLoader {
 
   constructor() {
     this.logger = new Logger(ConfigLoader.name);
-    this.files = [new RegExp('lithia.config.js')];
+    this.files = [/^lithia\.config\.js$/];
     this.defaultConfig = {
       app: {
         host: '0.0.0.0',
@@ -30,7 +30,7 @@ export class ConfigLoader {
     };
   }
 
-  async execute(): Promise<Record<string, string>> {
+  async execute(): Promise<void> {
     const configFiles: Dirent[] = [];
 
     await Scanner.execute({
@@ -51,11 +51,9 @@ export class ConfigLoader {
       );
     }
 
-    const config = await import(
-      resolve(process.cwd(), configFiles[0].name)
-    ).then((module) => module.default);
+    const config = await import(resolve(process.cwd(), configFiles[0].name));
 
-    return convertObjectToEnvVariables(
+    const variables = convertObjectToEnvVariables(
       this.mergeConfigs([
         this.defaultConfig,
         config,
@@ -66,6 +64,10 @@ export class ConfigLoader {
         },
       ]),
     );
+
+    Object.keys(variables).forEach((key) => {
+      process.env[key] = variables[key];
+    });
   }
 
   private mergeConfigs(configs: any[]): LithiaConfig {

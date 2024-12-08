@@ -28,12 +28,12 @@
     "access": "public"
   },
   "scripts": {
-    "format": "prettier --write .",
+    "format": "prettier '{src,__{tests}__}/**/*.ts' --write",
     "lint": "eslint .",
     "clean": "rimraf dist",
     "gen-types": "tsc --declaration --emitDeclarationOnly --declarationMap --outDir dist",
-    "build": "ncc build src/index.ts -t -o dist --minify --no-cache --source-map",
-    "build-cli": "ncc build src/cli/index.ts -t -o dist/cli --minify --no-cache --no-source-map-register"
+    "build": "tsup src/index.ts --minify --sourcemap --format cjs --out-dir dist",
+    "build-cli": "tsup src/cli/index.ts --minify --sourcemap --format cjs --out-dir dist/cli"
   },
   "dependencies": {
     "@lithiajs/common": "^0.0.4",
