@@ -51,6 +51,6 @@
     "format": "turbo run format",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "publish": "changeset publish"
+    "publish": "turbo run build && changeset publish"
   }
 }
