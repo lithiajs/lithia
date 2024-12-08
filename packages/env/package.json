@@ -1,0 +1,32 @@
+{
+  "name": "@lithiajs/env",
+  "version": "0.0.2-canary.0",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "directory": "packages/env"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsup src/index.ts --minify --dts --format cjs,esm --out-dir dist"
+  }
+}
