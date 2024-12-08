@@ -1,6 +1,6 @@
 {
   "name": "lithia",
-  "version": "0.0.3-canary.0",
+  "version": "0.0.4-canary.0",
   "license": "MIT",
   "files": [
     "dist"
@@ -30,7 +30,7 @@
     "build": "npm run clean && tsup src/index.ts --minify --dts --format cjs,esm --out-dir dist"
   },
   "dependencies": {
-    "@lithiajs/common": "^0.0.3-canary.0",
-    "@lithiajs/env": "^0.0.3-canary.0"
+    "@lithiajs/common": "^0.0.4-canary.0",
+    "@lithiajs/env": "^0.0.4-canary.0"
   }
 }
