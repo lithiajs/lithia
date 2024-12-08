@@ -5,4 +5,5 @@ export const colors = {
   cyan: (text: string) => `\u001B[36m${text}\u001B[39m`,
   yellow: (text: string) => `\u001B[33m${text}\u001B[39m`,
   lightGreen: (text: string) => `\u001B[92m${text}\u001B[39m`,
+  gray: (text: string) => `\u001B[90m${text}\u001B[39m`,
 };

@@ -21,6 +21,7 @@ import { description, name, version } from '../package.json';
 import { Command } from 'commander';
 import { OperationCancelledError } from './errors';
 import { ProjectTemplate } from './types';
+import { ShowSuccessMessageStep } from './steps/show-success-message';
 import { StepRunner } from './step-runner';
 
 const templates: ProjectTemplate[] = [
@@ -48,6 +49,7 @@ async function createLithiaApp(projectName?: string) {
     new InstallDependenciesStep(),
     new InitializeGitRepositoryStep(),
     new OpenInSelectedIDEStep(),
+    new ShowSuccessMessageStep(),
   ]);
 
   runner.set('defaultProjectName', 'my-lithia-app');
@@ -58,7 +60,6 @@ async function createLithiaApp(projectName?: string) {
     await runner.run();
   } catch (error) {
     if (error instanceof OperationCancelledError) return;
-
     console.error(`\n${error.message}`);
   }
 }
