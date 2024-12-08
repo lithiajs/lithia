@@ -26,7 +26,6 @@
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint .",
-    "clean": "rimraf dist",
-    "build": "npm run clean && tsup src/index.ts --minify --dts --format cjs,esm --out-dir dist"
+    "build": "tsup src/index.ts --minify --dts --format cjs,esm --out-dir dist"
   }
 }

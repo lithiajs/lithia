@@ -6,6 +6,7 @@ import {
 
 import { Dirent } from 'fs';
 import { LithiaConfig } from './types';
+import { convertObjectToEnvVariables } from './convert-object-to-env-variables';
 import { resolve } from 'path';
 
 export class ConfigLoader {
@@ -29,7 +30,7 @@ export class ConfigLoader {
     };
   }
 
-  async execute(): Promise<LithiaConfig> {
+  async execute(): Promise<Record<string, string>> {
     const configFiles: Dirent[] = [];
 
     await Scanner.execute({
@@ -54,7 +55,17 @@ export class ConfigLoader {
       resolve(process.cwd(), configFiles[0].name)
     ).then((module) => module.default);
 
-    return this.mergeConfigs([this.defaultConfig, config]);
+    return convertObjectToEnvVariables(
+      this.mergeConfigs([
+        this.defaultConfig,
+        config,
+        {
+          routes: {
+            folder: 'routes',
+          },
+        },
+      ]),
+    );
   }
 
   private mergeConfigs(configs: any[]): LithiaConfig {
