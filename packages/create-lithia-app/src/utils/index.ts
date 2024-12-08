@@ -1,2 +1,2 @@
-export * from './check-resource-installation.util';
-export * from './spin-and-wait.util';
+export * from './check-resource-installation';
+export * from './spin-and-wait';
