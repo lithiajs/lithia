@@ -1,7 +1,11 @@
 {
   "name": "lithia",
+  "description": "A simple and fast web framework for Node.js",
   "version": "0.0.4",
   "license": "MIT",
+  "bin": {
+    "lithia": "./dist/cli/index.js"
+  },
   "files": [
     "dist"
   ],
@@ -28,7 +32,8 @@
     "lint": "eslint .",
     "clean": "rimraf dist",
     "gen-types": "tsc --declaration --emitDeclarationOnly --declarationMap --outDir dist",
-    "build": "npm run clean && ncc build src/index.ts -t -o dist --minify --no-cache --source-map && npm run gen-types"
+    "build": "ncc build src/index.ts -t -o dist --minify --no-cache --source-map",
+    "build-cli": "ncc build src/cli/index.ts -t -o dist/cli --minify --no-cache --no-source-map-register"
   },
   "dependencies": {
     "@lithiajs/common": "^0.0.4",

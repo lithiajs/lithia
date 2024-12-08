@@ -28,6 +28,6 @@
     "lint": "eslint .",
     "clean": "rimraf dist",
     "gen-types": "tsc --declaration --emitDeclarationOnly --declarationMap --outDir dist",
-    "build": "npm run clean && ncc build src/index.ts -t -o dist --minify --no-cache --source-map && npm run gen-types"
+    "build": "ncc build src/index.ts -t -o dist --minify --no-cache --source-map"
   }
 }

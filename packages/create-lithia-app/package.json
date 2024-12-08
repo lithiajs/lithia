@@ -23,7 +23,7 @@
     "format": "prettier --write .",
     "lint": "eslint .",
     "clean": "rimraf dist",
-    "build": "npm run clean && ncc build src/index.ts -t -o dist --minify --no-cache --source-map"
+    "build": "ncc build src/index.ts -t -o dist --minify --no-cache --source-map"
   },
   "dependencies": {
     "@lithiajs/common": "^0.0.4"
