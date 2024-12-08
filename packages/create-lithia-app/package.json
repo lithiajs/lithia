@@ -1,7 +1,7 @@
 {
   "name": "create-lithia-app",
   "description": "Create Lithia App",
-  "version": "0.0.1-canary.0",
+  "version": "0.0.2-canary.0",
   "bin": {
     "create-lithia-app": "dist/index.js"
   },
@@ -26,6 +26,6 @@
     "build": "npm run clean && tsup src/index.ts --minify --dts --format cjs,esm --out-dir dist"
   },
   "dependencies": {
-    "@lithiajs/common": "^0.0.1-canary.0"
+    "@lithiajs/common": "^0.0.2-canary.0"
   }
 }
