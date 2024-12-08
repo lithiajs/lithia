@@ -1,5 +1,13 @@
 # create-lithia-app
 
+## 0.0.5
+
+### Patch Changes
+
+- bump-version
+- Updated dependencies
+  - @lithiajs/common@0.0.5
+
 ## 0.0.4
 
 ### Patch Changes

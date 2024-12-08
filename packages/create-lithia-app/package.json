@@ -1,7 +1,7 @@
 {
   "name": "create-lithia-app",
   "description": "Create Lithia App",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "bin": {
     "create-lithia-app": "dist/index.js"
   },
@@ -25,7 +25,7 @@
     "build": "tsup src/index.ts --clean --minify --sourcemap --format cjs --out-dir dist"
   },
   "dependencies": {
-    "@lithiajs/common": "^0.0.4"
+    "@lithiajs/common": "^0.0.5"
   },
   "tsup": {
     "external": [
