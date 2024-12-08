@@ -1,4 +1,5 @@
 import {
+  TypeCheckingError,
   UndefinedBuilderTypeError,
   UnknownBuilderTypeError,
 } from '@lithiajs/common';
@@ -30,8 +31,9 @@ async function build() {
     const builder = new LithiaBuilder();
     await builder.execute(builders[type]);
   } catch (error) {
+    if (error instanceof TypeCheckingError) return console.error(error.stack);
+
     console.error(error.message);
-    process.exit(1);
   }
 }
 

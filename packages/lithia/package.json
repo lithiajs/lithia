@@ -40,7 +40,8 @@
     "external": [
       "@lithiajs/common",
       "@lithiajs/env",
-      "esbuild"
+      "esbuild",
+      "rollup"
     ]
   }
 }

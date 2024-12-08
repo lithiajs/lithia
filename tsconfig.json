@@ -13,8 +13,10 @@
     "importHelpers": true,
     "allowJs": false,
     "types": ["node", "jest"],
+    "lib": ["ES2021"],
     "resolveJsonModule": true,
     "moduleResolution": "nodenext",
     "strictPropertyInitialization": false
-  }
+  },
+  "exclude": ["node_modules", ".lithia", "dist"]
 }

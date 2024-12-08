@@ -1,5 +1,11 @@
-/**@type {import('lithia').Lithia} */
+/**@type {import('lithia').LithiaConfig} */
 
-const config = {};
+const config = {
+  cli: {
+    builder: {
+      type: 'tsup',
+    },
+  },
+};
 
 module.exports = config;

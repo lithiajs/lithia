@@ -25,6 +25,7 @@ export abstract class ConfigLoader {
       builder: {
         type: 'tsup',
         bundle: true,
+        typeCheck: true,
       },
     },
   };
@@ -52,18 +53,12 @@ export abstract class ConfigLoader {
       );
     }
 
-    const config = await import(configFiles[0]);
+    const config = await import(configFiles[0]).then(
+      (module) => module.default,
+    );
 
     const variables = convertObjectToEnvVariables(
-      this.mergeConfigs([
-        this.defaultConfig,
-        config,
-        {
-          routes: {
-            folder: 'routes',
-          },
-        },
-      ]),
+      this.mergeConfigs([this.defaultConfig, config]),
     );
 
     Object.keys(variables).forEach((key) => {
