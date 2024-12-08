@@ -10,8 +10,6 @@ yarn-error.log*
 
 .vscode/*
 
-
-.nx/cache
-.nx/workspace-data
+.turbo
 
 dist

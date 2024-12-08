@@ -1,6 +1,6 @@
 {
   "name": "lithia",
-  "version": "0.0.4-canary.0",
+  "version": "0.0.4",
   "license": "MIT",
   "files": [
     "dist"
@@ -9,7 +9,7 @@
     "./package.json": "./package.json",
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
+      "import": "./dist/index.js",
       "require": "./dist/index.js"
     }
   },
@@ -26,10 +26,12 @@
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint .",
-    "build": "tsup src/index.ts --minify --dts --format cjs,esm --out-dir dist"
+    "clean": "rimraf dist",
+    "gen-types": "tsc --declaration --emitDeclarationOnly --declarationMap --outDir dist",
+    "build": "npm run clean && ncc build src/index.ts -t -o dist --minify --no-cache --source-map && npm run gen-types"
   },
   "dependencies": {
-    "@lithiajs/common": "^0.0.4-canary.0",
-    "@lithiajs/env": "^0.0.4-canary.0"
+    "@lithiajs/common": "^0.0.4",
+    "@lithiajs/env": "^0.0.4"
   }
 }
