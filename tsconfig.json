@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es2021",
+    "module": "nodenext",
+    "esModuleInterop": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "removeComments": false,
+    "useUnknownInCatchVariables": false,
+    "noUnusedLocals": false,
+    "importHelpers": true,
+    "allowJs": false,
+    "types": ["node", "jest"],
+    "resolveJsonModule": true,
+    "moduleResolution": "nodenext",
+    "strictPropertyInitialization": false
+  }
+}
