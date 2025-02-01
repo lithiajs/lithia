@@ -1,6 +1,6 @@
 {
   "name": "lithia",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Next-generation framework for building server-side applications with Node.js & TypeScript 🚀",
   "repository": {
     "type": "git",
