@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "noUnusedLocals": false,
+    "importHelpers": true,
+    "removeComments": false,
+    "noLib": false,
+    "sourceMap": false,
+    "allowJs": false,
+    "strict": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "strictPropertyInitialization": false,
+    "esModuleInterop": true,
+    "useUnknownInCatchVariables": false,
+    "types": ["node", "jest"],
+    "paths": {
+      "lithia/core": ["./src/core"],
+      "lithia/meta": ["./src/meta"],
+      "lithia/types": ["./src/types"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
