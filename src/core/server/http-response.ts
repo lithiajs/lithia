@@ -37,21 +37,6 @@ export class LithiaHttpResponse implements LithiaResponse {
     return this;
   }
 
-  send<T = any>(data: T): void {}
-
-  end(chunk?: string | Buffer): void {
-    if (this.isEnded) throw new ResponseAlreadySentError();
-    this.isEnded = true;
-    this.res.end(chunk);
-  }
-
-  json<T extends object>(data: T): void {
-    this.res.setHeader('Content-Type', 'application/json');
-    this.res.setHeader('Content-Length', Buffer.byteLength(JSON.stringify(data)));
-    this.res.write(JSON.stringify(data));
-    this.res.end();
-  }
-
   on(event: string, callback: (data: any) => void): void {
     this.res.on(event, callback);
   }

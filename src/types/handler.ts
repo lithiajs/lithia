@@ -23,9 +23,6 @@ export interface LithiaResponse {
   status(code: number): this;
   addHeader(key: string, value: OutgoingHttpHeader): this;
   removeHeader(key: string): this;
-  send<T = any>(data: T): void;
-  end(): void;
-  json<T extends object>(data: T): void;
   on(event: string, callback: (data: any) => void): void;
 }
 
